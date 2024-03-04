@@ -27,7 +27,13 @@
     text-align: center; /* Center-align text */
 }
 
+tr td:nth-child(4) {
+    display: none;
+}
+
 </style>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 		<div class="row">
 			<div class="col-12">
@@ -44,7 +50,7 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="table-responsive">
-									<table id="order-listing" class="table dataTable table-hover">
+									<table id="order-listing-withajax" class="table dataTable table-hover">
 										<thead>
 											<tr class="bg-dark text-white">
 												<th class="text-center">PRODUCT</th>
@@ -60,36 +66,37 @@
 												<th class="text-center">ACTION</th>
 											</tr>
 										</thead>
-										<tbody>
+                    
+										<!-- <tbody>
 										    <?php
 										    $sql = "SELECT * FROM accessory_table ORDER BY stock ASC";
 										    $query_cat_list = $conn->query($sql);
-										while ($rs_cat_list = $query_cat_list->fetch_assoc()) {
-										    ?>
-										    <tr <?php
-										    if($rs_cat_list['balance']<=20){
-										        echo "style='background-color:tomato;'";
-										    }
-										    ?>>
-										        <td><?=ucfirst($rs_cat_list['product_name'])?><input type="hidden" value="<?=$rs_cat_list['product_name']?>" id="product_name_<?=$rs_cat_list['access_id']?>"></td>
-										        <td><img style="height:100px;width:100px;border-radius: 0px 6px 6px 0px;" src="files/images/<?=$rs_cat_list['picture_name']?>"></td>
-										        <td style="10px;"><span><?=ucfirst($rs_cat_list['size_colour'])?></span><input type="hidden" value="<?=$rs_cat_list['size_colour']?>" id="size_colour_<?=$rs_cat_list['access_id']?>"></td>
-										        <td style="display:none;"><input style="width:50px;" type="number" access_id="<?=$rs_cat_list['access_id']?>" class="stock_changer" id="stock_<?=$rs_cat_list['access_id']?>" value="<?=$rs_cat_list['stock']?>" min="0"></td>
-										        <td>
-										           <?=$rs_cat_list['stock_used']?></td>
-										        <td><input style="width:50px;" type="number" access_id="<?=$rs_cat_list['access_id']?>" class="stock_changer" value="0" id="stock_used_<?=$rs_cat_list['access_id']?>" min="0"></td>
-										        <td><input style="width:100px;" type="number" access_id="<?=$rs_cat_list['access_id']?>" class="stock_changer" id="balance_<?=$rs_cat_list['access_id']?>" readonly value="<?php echo $rs_cat_list['balance']?>"></td>
-										        <td style="width:50px;"><?=ucfirst($rs_cat_list['unit_type'])?><input type="hidden" value="<?=$rs_cat_list['unit_type']?>" id="unit_type_<?=$rs_cat_list['access_id']?>"></td>
-										        <td><input style="width:85px;" type="text" id="last_ex_<?=$rs_cat_list['access_id']?>" value="<?=ucfirst($rs_cat_list['last_ex'])?>"></td>
-										        <td><input style="width:100px;" type="text" id="po_number_<?=$rs_cat_list['access_id']?>" value="<?=ucfirst($rs_cat_list['po_number'])?>"></td>
-										        <td>
-										            <button class="btn btn-primary save_stock" access_id = "<?=$rs_cat_list['access_id']?>">Save</button><br><br>
-										            <button class="btn btn-warning deleter" access_id="<?=$rs_cat_list['access_id']?>">Edit</button><br><br>
-										            <a href="export_log.php?access_id=<?=$rs_cat_list['access_id']?>"><button class="btn btn-success">Usage Log</button>
-										        </td>
-										    </tr>
-										    <?php } ?>
-										</tbody>
+                        while ($rs_cat_list = $query_cat_list->fetch_assoc()) {
+                            ?>
+                            <tr <?php
+                            if($rs_cat_list['balance']<=20){
+                                echo "style='background-color:tomato;'";
+                            }
+                            ?>>
+                                <td><?=ucfirst($rs_cat_list['product_name'])?><input type="hidden" value="<?=$rs_cat_list['product_name']?>" id="product_name_<?=$rs_cat_list['access_id']?>"></td>
+                                <td><img style="height:100px;width:100px;border-radius: 0px 6px 6px 0px;" src="files/images/<?=$rs_cat_list['picture_name']?>"></td>
+                                <td style="10px;"><span><?=ucfirst($rs_cat_list['size_colour'])?></span><input type="hidden" value="<?=$rs_cat_list['size_colour']?>" id="size_colour_<?=$rs_cat_list['access_id']?>"></td>
+                                <td style="display:none;"><input style="width:50px;" type="number" access_id="<?=$rs_cat_list['access_id']?>" class="stock_changer" id="stock_<?=$rs_cat_list['access_id']?>" value="<?=$rs_cat_list['stock']?>" min="0"></td>
+                                <td>
+                                  <?=$rs_cat_list['stock_used']?></td>
+                                <td><input style="width:50px;" type="number" access_id="<?=$rs_cat_list['access_id']?>" class="stock_changer" value="0" id="stock_used_<?=$rs_cat_list['access_id']?>" min="0"></td>
+                                <td><input style="width:100px;" type="number" access_id="<?=$rs_cat_list['access_id']?>" class="stock_changer" id="balance_<?=$rs_cat_list['access_id']?>" readonly value="<?php echo $rs_cat_list['balance']?>"></td>
+                                <td style="width:50px;"><?=ucfirst($rs_cat_list['unit_type'])?><input type="hidden" value="<?=$rs_cat_list['unit_type']?>" id="unit_type_<?=$rs_cat_list['access_id']?>"></td>
+                                <td><input style="width:85px;" type="text" id="last_ex_<?=$rs_cat_list['access_id']?>" value="<?=ucfirst($rs_cat_list['last_ex'])?>"></td>
+                                <td><input style="width:100px;" type="text" id="po_number_<?=$rs_cat_list['access_id']?>" value="<?=ucfirst($rs_cat_list['po_number'])?>"></td>
+                                <td>
+                                    <button class="btn btn-primary save_stock" access_id = "<?=$rs_cat_list['access_id']?>">Save</button><br><br>
+                                    <button class="btn btn-warning deleter" access_id="<?=$rs_cat_list['access_id']?>">Edit</button><br><br>
+                                    <a href="export_log.php?access_id=<?=$rs_cat_list['access_id']?>"><button class="btn btn-success">Usage Log</button>
+                                </td>
+                            </tr>
+                            <?php } ?>
+										  </tbody> -->
 									</table>
 								</div>
 							</div>
@@ -572,6 +579,12 @@ $(document).ready(function() {
   });
 });
 
-</script>
+new DataTable('#order-listing-withajax', {
+      ajax: 'accessorydata.php',
+      'processing': true,
+		  'serverSide': true,
+		  'serverMethod': 'post',
+  });
 
-	
+  
+</script>
