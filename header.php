@@ -35,9 +35,9 @@
 		</a>
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center">
-		<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+		<!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
 			<span class="mdi mdi-menu"></span>
-		</button>
+		</button> -->
 		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
 			<?php if( $_SESSION['employee_position_id']!='0' && intval($_SESSION['employee_position_id'])!=4){?>
 			

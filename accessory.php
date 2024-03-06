@@ -48,11 +48,12 @@ if ($op == 'accessory_list') {
 
     /*  */
     .card-title {
-      font-size: 15px;
+      font-size: 13px;
       background: #EEE;
       padding: 10px;
       display: inline-block;
-      margin: 10px 0;
+      margin: 0 0 5px 0;
+      font-weight: 600;
       border-radius: 100;
       text-transform: uppercase;
       position: relative;
@@ -91,6 +92,7 @@ if ($op == 'accessory_list') {
       margin: 10px 0 10px 10px;
       border-radius: 20px;
       color: #FF6258;
+      font-size: 12px;
     }
 
 
@@ -98,11 +100,12 @@ if ($op == 'accessory_list') {
     .dt-length label {
       margin: 10px 0 10px 10px;
       text-transform: capitalize;
+      font-size: 14px;
     }
 
     .table thead th,
     .jsgrid .jsgrid-table thead th {
-      padding: 13px 5px 13px 15px;
+      padding: 20px 5px 20px 15px;
       border-right: 1px solid #FFF;
       text-align: left !important;
       background: #d7d7d78f;
@@ -110,21 +113,21 @@ if ($op == 'accessory_list') {
 
     select#dt-length-0 {
       border-radius: 3px;
-      padding: 3px 15px;
+      padding: 0 10px;
     }
 
 
     td input {
       /* width: 150px !important; */
       border-radius: 2px;
-      padding: 5px 10px;
+      padding: 3px 10px;
       border: 1px solid #252C46;
     }
 
     .stock_changer {
       /* width: 100px !important; */
       border-radius: 3px;
-      padding: 5px 10px;
+      padding: 3px 10px;
       border: 1px solid #252C46;
     }
 
@@ -160,20 +163,22 @@ if ($op == 'accessory_list') {
 
     }
 
-    table tr td {
+    table tr {
       position: relative;
-      overflow: hidden;
+      /* overflow: hidden; */
     }
 
     table tr td:hover img {
       cursor: pointer;
-      width: 120px !important;
-      height: 70% !important;
+      width: 200px !important;
+      height: 200px !important;
       transform: scale(1.2);
       transition: .3s ease-in;
       border-radius: 2px !important;
       position: absolute;
       top: 20px;
+      left: 0;
+      object-fit: cover;
       z-index: 990;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
@@ -188,12 +193,12 @@ if ($op == 'accessory_list') {
       border-bottom: 1px solid #ddd;
     }
 
-    
+
     .table-hover tbody tr:hover {
       background-color: #c5c9e021;
     }
 
-    
+
 
     button.dt-paging-button.disabled.first {
       background: #252c4645;
@@ -207,28 +212,32 @@ if ($op == 'accessory_list') {
       font-weight: 500;
     }
 
-    
 
-    
+
+
 
     .dt-layout-row {
-      padding: 10px 0 0;
+      padding: 0;
     }
 
     .dt-layout-table {
-
+      margin-bottom: 20px;
       overflow-x: scroll;
     }
 
     td .btn {
-      width: 120px;
+      width: 95px;
       text-align: center;
-      display: flow;
+      display: flex;
+      font-size: 12px;
+      align-items: center;
+      justify-content: center;
     }
 
     .top-sec .btn {
       background: #FF6258;
       border-color: #FF6258;
+      padding: 7px 15px;
     }
 
     .modal.show .modal-dialog {
@@ -254,6 +263,8 @@ if ($op == 'accessory_list') {
       padding: 5px 10px;
       margin: 0;
     }
+
+
 
     .modal .btn {
       background: #95D03A;
@@ -300,6 +311,13 @@ if ($op == 'accessory_list') {
       background: #FFF !important;
     }
 
+    td {
+      padding: 5px 10px !important;
+    }
+
+    .card .card-body {
+      padding: 15px 30px;
+    }
 
     @media screen and (max-width:520px) {
       .card-title {
@@ -326,6 +344,15 @@ if ($op == 'accessory_list') {
 
       .modal-open .modal {
         padding: 0 !important;
+      }
+
+      .table td,
+      .jsgrid .jsgrid-table td,
+      .table th,
+      .jsgrid .jsgrid-table th {
+
+        line-height: 1;
+
       }
 
       td img {
@@ -433,7 +460,7 @@ if ($op == 'accessory_list') {
                       <th class="text-center">LAST USED</th>
                       <th class="text-center">USED</th>
                       <th class="text-center">BALANCE</th>
-                      <th class="text-center">UNIT  TYPE</th>
+                      <th class="text-center">UNIT TYPE</th>
                       <th class="text-center">LAST EX</th>
                       <th class="text-center">PO</th>
                       <th class="text-center">ACTION</th>
@@ -950,13 +977,13 @@ if ($op == 'accessory_list') {
   });
 
   new DataTable('#order-listing-withajax', {
-      ajax: 'ajax/accessory/accessorydata.php',
-      'processing': true,
-      'serverSide': true,
-      'serverMethod': 'post',
-      language: {
-        search: '_INPUT_',
-        searchPlaceholder: 'Search...'
-      }
+    ajax: 'ajax/accessory/accessorydata.php',
+    'processing': true,
+    'serverSide': true,
+    'serverMethod': 'post',
+    language: {
+      search: '_INPUT_',
+      searchPlaceholder: 'Search...'
+    }
   });
 </script>
