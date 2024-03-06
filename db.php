@@ -23,7 +23,7 @@
 	$tmp_str = explode($_SERVER["SERVER_NAME"],".");
 	$main_path = "";
 	if($_SERVER["SERVER_NAME"]=="localhost"){
-		$main_path = "http://localhost/inv/inventory/";
+		$main_path = "http://localhost/inventory/";
 	}else if( $tmp_str[0]=="192" ){
 		$main_path = "http://".$_SERVER["SERVER_NAME"]."/";
 	}else{

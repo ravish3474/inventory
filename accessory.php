@@ -52,6 +52,7 @@ if ($op == 'accessory_list') {
       background: #EEE;
       padding: 10px;
       display: inline-block;
+      margin: 10px 0;
       border-radius: 100;
       text-transform: uppercase;
       position: relative;
@@ -101,16 +102,16 @@ if ($op == 'accessory_list') {
 
     .table thead th,
     .jsgrid .jsgrid-table thead th {
-      padding: 6px 5px 18px 15px;
+      padding: 13px 5px 13px 15px;
       border-right: 1px solid #FFF;
       text-align: left !important;
+      background: #d7d7d78f;
     }
 
     select#dt-length-0 {
-      border-radius: 20px;
+      border-radius: 3px;
       padding: 3px 15px;
     }
-
 
 
     td input {
@@ -150,7 +151,7 @@ if ($op == 'accessory_list') {
     }
 
     table img {
-      border-radius: 55px !important;
+      border-radius: 0px !important;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 
@@ -161,56 +162,38 @@ if ($op == 'accessory_list') {
 
     table tr td {
       position: relative;
+      overflow: hidden;
     }
 
-    table tr:hover img {
+    table tr td:hover img {
       cursor: pointer;
-      width: 130px !important;
-      height: 130px !important;
-      transform: scale(1.5);
+      width: 120px !important;
+      height: 70% !important;
+      transform: scale(1.2);
       transition: .3s ease-in;
       border-radius: 2px !important;
       position: absolute;
-      bottom: 5px;
-      left: 0;
+      top: 20px;
       z-index: 990;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     }
 
+    table.dataTable td,
+    table.dataTable th {
+      max-width: 100%;
+    }
+
+    table td {
+      border-bottom: 1px solid #ddd;
+    }
+
+    
     .table-hover tbody tr:hover {
       background-color: #c5c9e021;
     }
 
-    .navbar.default-layout .navbar-menu-wrapper .navbar-nav.header-links .nav-item .nav-link {
-      font-size: 15px;
-    }
-
-    /* Designing for scroll-bar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-      background: #ECEFF7;
-      border-radius: 5px;
-    }
-
-    .table-responsive {
-      padding-bottom: 30px;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: #252C46;
-      border-radius: 5px;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #FF6258;
-    }
+    
 
     button.dt-paging-button.disabled.first {
       background: #252c4645;
@@ -224,14 +207,200 @@ if ($op == 'accessory_list') {
       font-weight: 500;
     }
 
-    /* .dt-layout-row {
-      justify-content: center;
-      flex-direction: column-reverse;
+    
+
+    
+
+    .dt-layout-row {
+      padding: 10px 0 0;
     }
 
-    div#order-listing-withajax_info {
-      padding: 20px 0;
-    } */
+    .dt-layout-table {
+
+      overflow-x: scroll;
+    }
+
+    td .btn {
+      width: 120px;
+      text-align: center;
+      display: flow;
+    }
+
+    .top-sec .btn {
+      background: #FF6258;
+      border-color: #FF6258;
+    }
+
+    .modal.show .modal-dialog {
+      margin-top: 0 !important;
+    }
+
+    .modal.show .modal-dialog {
+      margin: 0 auto !important;
+      max-width: 700px;
+    }
+
+    .modal-header {
+      background: #FFF;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .modal .modal-dialog .modal-content .modal-footer {
+      background: #FFF;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .modal-header .close {
+      padding: 5px 10px;
+      margin: 0;
+    }
+
+    .modal .btn {
+      background: #95D03A;
+      border: none;
+      padding: 10px 30px;
+      margin: 0 auto;
+      display: flex;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    }
+
+    #accessory_modal .btn {
+      background: #95D03A;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    }
+
+    #accessory_modal_edit .btn {
+      background: #2196F3;
+
+
+    }
+
+    .modal .modal-dialog .modal-content .modal-header {
+      padding: 10px 26px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    input::file-selector-button {
+      background: #337AB7;
+      color: #FFF;
+      border: none;
+      padding: 5px 10px;
+
+      font-size: 14px;
+      margin-right: 30px;
+    }
+
+    .modal input,
+    textarea {
+      padding: 6px 10px 8px 6px;
+      background: #FFF !important;
+    }
+
+
+    @media screen and (max-width:520px) {
+      .card-title {
+        font-size: 15px;
+        width: 100%;
+      }
+
+      .top-sec {
+        position: relative;
+      }
+
+      .top-sec .text-right {
+        position: absolute;
+        right: 0;
+        padding: 0;
+      }
+
+      .top-sec .text-right .col-sm-6 {
+        position: absolute;
+        right: 0;
+        padding: 0;
+        top: -7px;
+      }
+
+      .modal-open .modal {
+        padding: 0 !important;
+      }
+
+      td img {
+        height: 80px !important;
+        width: 80px !important;
+      }
+
+      .top-sec .col-sm-6 {
+        padding: 0;
+      }
+
+      .dt-length label {
+        font-size: 13px;
+      }
+
+      .dt-end label {
+        text-align: right !important;
+        display: block;
+      }
+
+      .dt-layout-cell .dt-search input {
+        padding: 3px 20px;
+        margin: 0;
+        font-size: 15px;
+        width: 92%;
+        position: relative;
+        right: 0px;
+        float: right;
+      }
+
+      table thead th,
+      .jsgrid .jsgrid-table thead th {
+        padding: 0px 5px 14px 15px;
+      }
+
+      .dt-layout-cell.dt-start {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+      }
+
+      .dt-layout-row {
+        padding: 10px 0;
+      }
+
+
+
+      .order-listing-withajax_wrapper {}
+
+      .content-wrapper {
+        padding: 10px;
+      }
+
+      select#dt-length-0 {
+        border-radius: 2px;
+      }
+
+      .navbar.default-layout .navbar-brand-wrapper .brand-logo-mini img {
+        width: calc(140px - 50px);
+        height: 100%;
+      }
+
+      .navbar.default-layout .navbar-brand-wrapper {
+        width: 35%;
+      }
+
+      table td:hover img {
+        width: 110px !important;
+        height: 100px !important;
+        position: absolute;
+        bottom: 35px;
+        left: 0;
+      }
+    }
 
 
     /*  */
@@ -243,8 +412,8 @@ if ($op == 'accessory_list') {
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <div class="row">
-            <div class="col-sm-6">
+          <div class="row top-sec">
+            <div class="col-sm-6 p-0">
               <h4 class="card-title">Accessory</h4>
             </div>
             <div class="col-sm-6 text-right">
@@ -260,11 +429,11 @@ if ($op == 'accessory_list') {
                       <th class="text-center">PRODUCT</th>
                       <th>PICTURE</th>
                       <th style="display:none;">PICTURE</th>
-                      <th class="text-center">SIZE /<br>COLOUR</th>
-                      <th class="text-center">LAST<br>USED</th>
+                      <th class="text-center">SIZE / COLOUR</th>
+                      <th class="text-center">LAST USED</th>
                       <th class="text-center">USED</th>
                       <th class="text-center">BALANCE</th>
-                      <th class="text-center">UNIT<br> TYPE</th>
+                      <th class="text-center">UNIT  TYPE</th>
                       <th class="text-center">LAST EX</th>
                       <th class="text-center">PO</th>
                       <th class="text-center">ACTION</th>
@@ -395,7 +564,7 @@ if ($op == 'accessory_list') {
           </div>
           <div class="form-group">
             <label for="inputAddress22">Add Picture</label>
-            <input type="file" accept="image/*" required name="add_picture" class="form-control" id="inputAddress22" style="background-color: #f3f4fa;">
+            <input type="file" accept="image/*" required name="add_picture" class="form-control" id="inputAddress22" style="background-color: #FFF;">
           </div>
           <button type="submit" id="sub_btn" class="btn btn-primary">Submit</button>
         </form>
@@ -403,9 +572,9 @@ if ($op == 'accessory_list') {
           <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
         </div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -495,7 +664,8 @@ if ($op == 'accessory_list') {
           </div>
           <div class="form-group">
             <label for="picture_edit">Update Picture</label>
-            <input type="file" accept="image/*" name="add_picture" class="form-control" id="picture_edit" style="background-color: #f3f4fa;">
+            <input type="file" accept="image/*" name="add_picture" class="form-control" id="picture_edit" style="background-color: #f3f4fa;
+            ">
           </div>
           <button type="submit" id="sub_btn_edit" class="btn btn-primary">Update</button>
         </form>
@@ -503,9 +673,9 @@ if ($op == 'accessory_list') {
           <div class="progress-bar-edit" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
         </div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -780,9 +950,13 @@ if ($op == 'accessory_list') {
   });
 
   new DataTable('#order-listing-withajax', {
-    ajax: 'accessorydata.php',
-    'processing': true,
-    'serverSide': true,
-    'serverMethod': 'post',
+      ajax: 'ajax/accessory/accessorydata.php',
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      language: {
+        search: '_INPUT_',
+        searchPlaceholder: 'Search...'
+      }
   });
 </script>
