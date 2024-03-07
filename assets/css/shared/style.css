@@ -20600,11 +20600,17 @@ ul li {
 .jsgrid .jsgrid-table th {
   vertical-align: middle;
   font-size: 0.875rem;
-  line-height: 0;
+  line-height: 1;
   white-space: nowrap;
   height: auto;
   padding: 18px 15px;
 }
+
+#order-listing-withajax_wrapper td {
+  line-height: 0;
+
+}
+
 
 .table td img,
 .jsgrid .jsgrid-table td img,

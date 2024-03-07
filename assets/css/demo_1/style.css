@@ -41,10 +41,11 @@
   display: flex;
   padding: 16px 35px;
   white-space: nowrap;
-  height: 52px;
-  border-bottom: 1px solid #e5dbdb85;
+  height: 45px;
+  border-bottom: 1px solid #e5dbdb3d;
   color: #4a4a4a;
 }
+
 
 .sidebar .nav .nav-item .nav-link i.menu-arrow {
   margin-left: auto;
@@ -146,9 +147,7 @@
   display: none;
 }
 
-.sidebar-icon-only .admin-profile {
-  padding: 30px 10px;
-}
+
 
 .sidebar-icon-only .admin-profile img {
   width: 40px !important;
@@ -160,7 +159,7 @@
   max-width: 100%;
 }
 
-/* @media screen and (min-width:520px) {
+@media screen and (min-width:520px) {
   .navbar-menu-wrapper .navbar-toggler {
     display: none;
   }
@@ -174,10 +173,12 @@
   .sidebar .navbar-toggler {
     display: block;
   }
-} */
-.sidebar #form1 {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  .navbar-menu-wrapper button.navbar-toggler.navbar-toggler.align-self-center {
+    padding: 0 0 4px 0;
+  }
 }
+
 
 .sidebar .nav .nav-item.nav-profile .nav-link .user-wrapper .text-wrapper {
   margin-left: 15px;
@@ -204,7 +205,7 @@
 
 .sidebar .nav.sub-menu {
   margin-bottom: 0;
-  padding: 0 0 0 0;
+  padding: 0 0 0 5em;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link {
@@ -215,13 +216,8 @@
   height: auto;
 }
 
-.sidebar .nav.sub-menu .nav-item .nav-link.active {
-  color: green;
-}
 
-.sidebar .nav.sub-menu .nav-item .nav-link.active:before {
-  background: #2196f3;
-}
+
 
 .sidebar .nav.sub-menu .nav-item:hover>.nav-link {
   background: initial;
@@ -328,11 +324,17 @@
 
   .sidebar-offcanvas.active {
     right: 0;
+    overflow-x: scroll;
   }
 }
 
 .navbar.fixed-top+.page-body-wrapper {
   padding-top: 30px;
+}
+
+.sidebar-icon-only .sidebar figure {
+
+  margin: 10px 0;
 }
 
 @media (min-width: 992px) {
@@ -388,6 +390,7 @@
   .sidebar-mini .sidebar .nav .nav-item .nav-link .menu-icon {
     margin-right: 0;
   }
+
 
   .sidebar .nav .nav-item .nav-link .menu-icon {
     margin-right: 15px;
@@ -493,8 +496,7 @@
   .sidebar-icon-only .sidebar .nav .nav-item .nav-link {
     display: block;
     text-align: center;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 5px 1px 1px 19px;
   }
 
   .sidebar-icon-only .sidebar .nav .nav-item .nav-link .badge,
@@ -837,22 +839,19 @@
 
 
 .sidebar .nav .nav-item :hover {
-  background: #ff625829 !important;
-  color: #f72222 !important;
-}
-
-.sidebar .nav .nav-item :hover span {
+  background: #ff62580d !important;
   color: #f72222 !important;
 }
 
 
-.sidebar .nav .nav-item .nav-link:hover .menu-title {
-  color: #f72222;
-}
 
-.sidebar .nav .nav-item .nav-link:hover .menu-icon {
+.sidebar .nav .nav-item:hover .nav-link .menu-icon {
   color: #f72222 !important;
 }
+
+
+
+
 
 
 a#UserDropdown {
@@ -913,9 +912,9 @@ a#UserDropdown {
   height: 100vh;
   overflow: visible;
   position: fixed;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   height: 100%;
 }
 
@@ -927,12 +926,20 @@ a#UserDropdown {
   right: 0;
 }
 
+
 .admin-profile {
-  padding: 30px 0;
-  background: #eeeeee6b;
+  padding: 20px 0;
+  background: linear-gradient(183deg, #ff625812, transparent);
   width: 100%;
   text-align: center;
   margin: -10px 0 10px 0;
+  border-bottom: 1px solid #0000;
+}
+
+
+
+.sidebar-icon-only .admin-profile {
+  padding: 20px 10px;
 }
 
 .sidebar .input-group,
@@ -940,17 +947,14 @@ a#UserDropdown {
   display: block;
 }
 
-.sidebar .nav .nav-item.active>.nav-link {
-  background: #ff625817 !important;
-  color: #0c0a0a;
-}
+
 
 .sidebar .nav {
   overflow: visible;
 }
 
 .sidebar figure {
-  margin: 0 0 1rem;
+  margin: 0;
   text-align: center;
 }
 
@@ -984,12 +988,14 @@ a#UserDropdown {
   transform: rotate(45deg);
 }
 
+
+
 .sidebar .admin-profile img {
   width: 75px;
   height: 75px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #FF6258;
+  border: 2px solid #FF6258;
   padding: 4px;
 }
 
@@ -1035,8 +1041,25 @@ button.navbar-toggler.navbar-toggler.align-self-center {
 .sidebar .nav .nav-item .nav-link .menu-title {
   font-size: 13px;
   text-transform: capitalize;
-  /* -------------------------------------- Side bar  -------------------------------------- */
 }
+
+.navbar.default-layout .navbar-menu-wrapper {
+  position: relative;
+}
+
+.navbar.default-layout .navbar-menu-wrapper .icon-menu:before {
+  color: #000;
+}
+
+.navbar-menu-wrapper button.navbar-toggler.navbar-toggler.align-self-center {
+  clip-path: none;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  top: 12px;
+}
+
+/* -------------------------------------- Side bar  -------------------------------------- */
 
 /* Designing for scroll-bar */
 ::-webkit-scrollbar {
@@ -1072,6 +1095,9 @@ button.navbar-toggler.navbar-toggler.align-self-center {
     width: 100%;
   }
 
+  .sidebar-icon-only .admin-profile {
+    padding: 10px;
+  }
 
 
 

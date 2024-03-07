@@ -45,14 +45,9 @@ if (isset($_GET['vp'])) {
 		<figure>
 			<img src="http://localhost/inv/inventory/files/thumb/20190919100354.jpeg" alt="">
 		</figure>
-		<h6 class="sidebar-icon-only-none mt-3">Administrator</h6>
+		<h6 class="sidebar-icon-only-none my-2">Administrator</h6>
 		<h6 class="sidebar-icon-only-view">AD</h6>
-		<div class="input-group">
-			<div class="form-outline" data-mdb-input-init>
-				<input type="search" id="form1" placeholder="Search" class="form-control" />
-			</div>
-
-		</div>
+		
 
 	</div>
 	<ul class="nav">
