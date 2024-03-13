@@ -58,9 +58,22 @@ input::-webkit-inner-spin-button { margin-left: 10px; }
 	background-color: #DDD !important;
 	color: #555;
 }
+
+.hidden {
+        display: none;
+    }
 </style>
+	<div>	
+        <label>
+            <input type="radio" name="toggle" value="fabric" onclick="toggleDiv('fabricdiv')" checked> Fabric
+        </label>
+        <label>
+            <input type="radio" name="toggle" value="accessory" onclick="toggleDiv('accessorydiv')"> Accessory
+        </label>
+    </div>
+
 <h4>Stock IN Form</h4>
-<div class="row">
+<div class="row" id="fabricdiv" >
 	<div class="col-12 grid-margin">
 		<div class="card">
 			<div class="card-body">
@@ -174,6 +187,92 @@ input::-webkit-inner-spin-button { margin-left: 10px; }
 						<button id="btn_submit" type="button" class="btn btn-success" style="width: 100%;" onclick="submitForm();" disabled>Submit form</button>
 					</div>
 				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="accessorydiv" class="hidden row" >
+	<div class="col-12 grid-margin">
+		<div class="card">
+			<div class="card-body">
+				
+				<div id="addsuccess"></div>
+				<form id="access_form">
+					<div class="form-group">
+						<label for="inputAddress">Category Name</label>
+						<select class="form-control" name="cat_name">
+							<option value="" selected disabled>--Select Category--</option>
+							<?php
+							$cat_sql = "SELECT * FROM cat WHERE type_id='2' ORDER BY cat_code ASC";
+							$cat_list = $conn->query($cat_sql);
+							while ($main_cat_list = $cat_list->fetch_assoc()) {
+							?>
+							<option value="<?=$main_cat_list['cat_id']?>"><?=$main_cat_list['cat_code']?></option>
+							<?php
+							}
+							?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="inputAddress">Product Name</label>
+						<input type="text" class="form-control" required id="inputAddress" name="product_name" placeholder="Enter Product Name...">
+					</div>
+					<div class="form-group">
+						<label for="inputAddress2">Size/Colour</label>
+						<input type="text" name="size_colour" required class="form-control" id="inputAddress2" placeholder="Input Size/Color Here...">
+					</div>
+						<div class="form-row">
+						<div class="form-group col-md-6">
+						<label for="inputEmail4">Stock</label>
+						<input type="number" min="0" name="stock" required class="form-control" id="inputEmail4" placeholder="Enter Stock Here...">
+						</div>
+						<div class="form-group col-md-6">
+						<label for="inputPassword4">Enter Unit Type Here</label>
+						<input type="text" name="unit_type" required class="form-control" id="inputPassword4" placeholder="Enter Unit Type Here...">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+						<label for="sup_name">Supplier Name</label>
+							<select class="form-control" name="sup_name" id="sup_name">
+								<option value="" selected disabled>--Select Supplier--</option>
+							<?php
+							$sup_sql = "SELECT * FROM supplier ORDER BY supplier_name ASC";
+							$sup_list = $conn->query($sup_sql);
+							while ($main_sup_list = $sup_list->fetch_assoc()) {
+							?>
+							<option value="<?=$main_sup_list['supplier_id']?>" sup_code="<?=$main_sup_list['supplier_code']?>"><?=$main_sup_list['supplier_name']?></option>
+							<?php
+							}
+							?>
+						</select>
+						</div>
+						<div class="form-group col-md-6">
+						<label for="sup_code">Supplier Code</label>
+						<input type="text" name="sup_code"  id="sup_code" readonly class="form-control" id="sup_code">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+						<label for="recv_date">Received Date</label>
+						<input type="date" class="form-control" name="recv_date" id="recv_date">
+						</div>
+						<div class="form-group col-md-6">
+						<label for="location">Location</label>
+						<input type="text" name="location" required class="form-control" id="location" placeholder="Enter Location Here...">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAddress5">PO</label>
+						<input type="text" name="po_number" required class="form-control" id="inputAddress5" placeholder="Enter PO Here...">
+					</div>
+					<div class="form-group">
+						<label for="inputAddress22">Add Picture</label>
+						<input type="file" accept="image/*" required name="add_picture" class="form-control" id="inputAddress22" style="background-color: #f3f4fa;">
+					</div>
+					<button type="submit" id="sub_btn" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
 		</div>
@@ -533,4 +632,69 @@ function setReceive(for_item_id){
 	});
 
 }
+</script>
+
+<script>
+	function toggleDiv(divId) {
+		var divToShow = document.getElementById(divId);
+		var divToHide;
+		if (divId === 'fabricdiv') {
+			divToHide = document.getElementById('accessorydiv');
+		} else {
+			divToHide = document.getElementById('fabricdiv');
+		}
+		divToHide.classList.add('hidden');
+		divToShow.classList.remove('hidden');
+	}
+
+	$(document).on('submit', '#access_form', function (e) {
+    e.preventDefault();
+    var form = $(this)[0];
+    var formData = new FormData(form);
+    var progressBar = $('.progress');
+    var progressBarValue = $('.progress-bar');
+
+    $('#sub_btn').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Submitting...').attr('disabled', true);
+
+    $.ajax({
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        url: 'ajax/accessory/add_accessory.php',
+        xhr: function () {
+            var xhr = new XMLHttpRequest();
+
+            // Progress event listener
+            xhr.upload.addEventListener('progress', function (e) {
+                if (e.lengthComputable) {
+                    var percent = Math.round((e.loaded / e.total) * 100);
+                    progressBarValue.css('width', percent + '%');
+                    progressBarValue.text(percent + '%');
+                }
+            }, false);
+
+            return xhr;
+        },
+        success: function (response) {
+            var response = JSON.parse(response);
+            if (response.status == 1) {
+				$("#addsuccess").append("<div class='alert alert-success' role='alert'>Accessory added successfully</div>");
+				
+                
+            } else {
+                swal("Error", "Something Went Wrong", "error");
+            }
+        },
+        beforeSend: function () {
+            progressBar.show();
+        },
+        complete: function () {
+            progressBar.hide();
+            $('#sub_btn').html('Submit').removeAttr('disabled');
+        }
+    });
+});
+
+
 </script>

@@ -134,6 +134,11 @@ $row_pac = $rs_pac->fetch_assoc();
                     echo '<th>';
                     if( ($row_list["fabric_in_piece"]==$row_list["fabric_balance"]) && ($row_list["on_producing"]=="0") ){
                       echo '<button class="btn btn-danger" type="button" onclick="return removeFabricRoll('.$row_list["pac_id"].','.$row_list["fabric_id"].');">Remove</button>';
+                     echo' <form id="barcodeForm">      
+                      <input type="hidden" autocomplete="off"  type="text" value="'.$row_list["pac_id"].' ' . $row_list["fabric_id"].' " name="text">
+                      <input type="hidden" autocomplete="off"  type="text" value="'.$row_list["pac_id"].' " name="filename">                                          
+                      <button class="generateBarcodeBtn btn btn-info" style="padding:5px;cursor: pointer;">Generate Barcode</button>                      
+                    </form>';
                     }else{
                       echo '&nbsp;';
                     }
@@ -163,6 +168,37 @@ $row_pac = $rs_pac->fetch_assoc();
     </div>
   </div>
 </div>
+
+<script>
+   $(document).ready(function(){
+    $('.generateBarcodeBtn').click(function(e){
+        e.preventDefault();
+        var formData = $(this).closest('form').serialize(); // Serialize only the form associated with the clicked button
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/stock_in/generate_barcode.php',
+            data: formData,
+            success: function(response){
+                // Construct the URL for the downloaded file
+                var downloadUrl = 'ajax/stock_in/' + response;
+                
+                // Create a hidden link and simulate a click to trigger the download
+                var link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = response;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            },
+            error: function(xhr, status, error){
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
+</script>
+
 <?php /*
 <a href="?vp=<?php echo base64_encode('po_form').'&op='.base64_encode('po_edit').'&re_id='.base64_encode($re_id);?>" class="btn btn-danger btn-block">Edit PO</a>
   */
